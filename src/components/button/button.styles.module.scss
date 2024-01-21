@@ -1,0 +1,25 @@
+@use "../../themes/theme.scss";
+
+.button{
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: theme.$text;
+}
+
+.primary {
+  background-color: theme.$primary;
+}
+
+.accept {
+  background-color: theme.$accept;
+}
+
+.danger {
+  background-color: theme.$danger;
+}
+
+.warn {
+  background-color: theme.$warn;
+}
