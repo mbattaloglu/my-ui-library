@@ -1,40 +1,31 @@
+import { ComponentProps } from "react";
 import styles from "./button.styles.module.scss";
+import { giveColor } from "utils/giveColor/giveColor";
 
-export type ButtonTypes = {
-  Primary,
-  Accept,
-  Danger,
-  Warn,
-}
-
-type ButtonProps = {
-  variant: keyof ButtonTypes;
+type CustomButtonProps = {
+  /**
+   * To declare button's state(coloring)
+   */
+  variant: "primary" | "accept" | "warn" | "danger";
+  /**
+   * The text inside the button
+   */
   readonly title: string;
 };
 
-function giveColor(variant: ButtonTypes) {
-  switch (variant) {
-    case Primary: {
-      return styles.primary;
-    }
-    case Accept: {
-      return styles.accept;
-    }
-    case Danger: {
-      return styles.danger;
-    }
-    case Warn: {
-      return styles.warn;
-    }
-  }
-}
+type ButtonProps = CustomButtonProps & ComponentProps<"button">;
 
-const Button: React.FC<ButtonProps> = ({ variant, title }) => {
+/**
+ * Clickable component to catch user interaction
+ */
+export const Button: React.FC<ButtonProps> = ({
+  variant = "primary",
+  title = "Submit",
+  ...props
+}) => {
   return (
-    <button className={`${styles.button} ${giveColor(variant)}`}>
+    <button className={`${styles.button} ${giveColor(variant)}`} {...props}>
       {title}
     </button>
   );
 };
-
-export default Button;
